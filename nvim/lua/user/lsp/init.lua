@@ -1,9 +1,5 @@
-local status_ok, _ = pcall(require, "lspconfig")
-if not status_ok then
-  return
-end
+local lsp = require('lsp-zero')
 
-require "user.lsp.lsp-signature"
-require "user.lsp.lsp-installer"
-require("user.lsp.handlers").setup()
-require "user.lsp.null-ls"
+lsp.preset('recommended')
+lsp.nvim_workspace()
+lsp.setup()
