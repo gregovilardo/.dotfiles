@@ -14,6 +14,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Util.Loggers
 import XMonad.Util.Font
 
+
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
@@ -42,11 +43,18 @@ main = do
         , workspaces         = [ "1", "2", "3", "4", "5" ] 
         }
         `additionalKeys` 
-            [ ((0, xF86XK_AudioLowerVolume   ), spawn "amixer set Master 200-")
-            , ((0, xF86XK_AudioRaiseVolume   ), spawn "amixer set Master 200+ && /bin/scripts/volume.sh")
-            , ((0, xF86XK_AudioMute          ), spawn "amixer set Master toggle")
-            , ((myModMask, xK_semicolon      ), spawn "/bin/scripts/key_layout.sh")
-            , ((myModMask, xK_ntilde         ), spawn "/bin/scripts/key_layout.sh")
+            [ ((0, xF86XK_AudioLowerVolume           ), spawn "amixer set Master 200-")
+            , ((0, xF86XK_AudioRaiseVolume           ), spawn "amixer set Master 200+ && /bin/scripts/volume.sh")
+            , ((myModMask, xF86XK_AudioLowerVolume   ), spawn "amixer set Master 1000-")
+            , ((myModMask, xF86XK_AudioRaiseVolume   ), spawn "amixer set Master 1000+ && /bin/scripts/volume.sh")
+            , ((0, xF86XK_AudioMute                  ), spawn "amixer set Master toggle")
+            , ((myModMask, xK_s                      ), spawn "ksnip")
+            , ((myModMask, xK_p                      ), spawn "rofi -show run")
+            , ((myModMask, xK_f                      ), spawn "firefox")
+            , ((myModMask, xK_n                      ), spawn "nautilus")
+            , ((myModMask, xK_o                      ), spawn "obsidian")
+            , ((myModMask, xK_semicolon              ), spawn "/bin/scripts/key_layout.sh")
+            , ((myModMask, xK_ntilde                 ), spawn "/bin/scripts/key_layout.sh")
             ]  
 
 myTerminal    = "alacritty"
@@ -64,12 +72,11 @@ mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spaci
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
 
-tall = mySpacing 2 $ ResizableTall 1 (3/100) (1/2) []
-fullLayout = noBorders $ Full
+tall = smartBorders $ mySpacing 2 $ ResizableTall 1 (3/100) (1/2) []
+fullLayout = smartBorders $ Full
 
-myLayoutHook = avoidStruts $ myDefaultLayout 
+myLayoutHook = avoidStruts (myDefaultLayout) ||| fullLayout 
   where
-     
      myDefaultLayout = tall ||| Mirror tall ||| fullLayout 
 
 

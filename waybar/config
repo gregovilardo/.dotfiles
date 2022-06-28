@@ -1,0 +1,79 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    "height": 30,
+
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["custom/disk_home", "temperature", "cpu", "memory", "tray", "pulseaudio", "network", "idle_inhibitor", "clock", "sway/language"],
+    "sway/mode": {
+        "format": " {}"
+    },
+    "sway/workspaces": {
+        "format": "{name}",
+        "disable-scroll": true
+    },
+    "sway/window": {
+        "max-length": 80,
+        "tooltip": false
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y-%m-%d %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "network": {
+        "format": "{icon}",
+        "format-alt": "{icon}   {bandwidthUpBits} | {bandwidthDownBits}",
+        "format-alt-click": "click-left",
+        "format-icons": {
+            "wifi": ["睊", "直" ,""],
+            "ethernet": [""],
+            "disconnected": ["睊"]
+        },
+        "on-click": "",
+    "tooltip": false
+    },
+    "pulseaudio": {
+        "format": " {icon} {volume}%",
+        "format-muted": "ﱝ",
+        "format-icons": {
+            "default": ["", "", "墳", ""]
+        },
+        "scroll-step": 10,
+        "tooltip": false
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip": false
+    },
+    "tray": {
+        "icon-size": 18,
+    },
+    "memory": {
+		"format": "  {used:0.1f}G"
+	},
+    "cpu": {
+		"format": "  {usage}%",
+		"tooltip": false
+	},
+    "temperature": {
+		// "thermal-zone": 2,
+		// "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+		"critical-threshold": 80,
+		"format-critical": "<span color='#e88939'>{icon}</span> {temperatureC}°C",
+		"format": "  {icon} {temperatureC}°C",
+		"format-icons": ["", "", ""]
+	},
+    "custom/disk_home": {
+		"format": "  {} ",
+		"interval": 30,
+		"exec": "df -h --output=avail $HOME | tail -1 | tr -d ' '"
+	},
+    "sway/language": {
+        "format": " {short}    ",
+    }
+}

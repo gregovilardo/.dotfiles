@@ -112,3 +112,8 @@ _comp_options+=(globdots)
 #BREW ON PATH
 echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/gregovilardo/.zprofile
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+[ -f "/home/gregovilardo/.ghcup/env" ] && source "/home/gregovilardo/.ghcup/env" # ghcup-env
+
+#Flutter on path
+export PATH="$PATH:/home/gregovilardo/flutter/bin"

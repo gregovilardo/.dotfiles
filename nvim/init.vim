@@ -25,6 +25,7 @@ Plug 'kyazdani42/nvim-tree.lua'
 " LSP Support
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
+Plug 'https://github.com/jose-elias-alvarez/null-ls.nvim'
 
 " LSP Mananger
 Plug 'VonHeikemen/lsp-zero.nvim'
