@@ -1,4 +1,3 @@
-# history settings
 #!/bin/sh
 # Enable zap plugin mananger https://github.com/zap-zsh/zap
 # INSTALL ZAP
@@ -8,15 +7,26 @@
 # PUT A .zshenv IN $HOME WITH $ZDOTDIR
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
 
-export PATH="$HOME/.config/cargo/bin:$PATH"
+export PATH="$HOME/.config/cargo/bin:$PATH:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/go/bin:$HOME/.config/go/bin:$HOME/.local/bin"
+
 export RUSTUP_HOME=~/.config/rustup
 export CARGO_HOME=~/.config/cargo
 export XDG_DATA_HOME=~/.local/share
 export XDG_CONFIG_HOME=~/.config
 export XDG_STATE_HOME=~/.local/state
 export XDG_CACHE_HOME=~/.cache
+
+# Wayland Fix
+export XDG_CURRENT_DESKTOP=sway
+export QT_QPA_PLATFORM=wayland
+
 #export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
+
+
+#for gtk-layer-shell
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+export LD_LIBRARY_PATH=/usr/local/lib
 
 export BAT_THEME="gruvbox-dark"
 export ZDOTDIR=$HOME/.config/zsh
@@ -87,3 +97,7 @@ fpath=(path/to/zsh-completions/src $fpath)
 export NVM_DIR="/home/gregovilardo/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+# eval $(ssh-agent)
+eval "$(zoxide init --cmd cd zsh)"
+
+[ -f "/home/gregovilardo/.ghcup/env" ] && . "/home/gregovilardo/.ghcup/env" # ghcup-env

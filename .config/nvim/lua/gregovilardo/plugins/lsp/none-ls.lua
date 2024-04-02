@@ -16,8 +16,10 @@ return {
       ensure_installed = {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
-        "black", -- python formatter
-        "pylint", -- python linter
+        -- "black", -- python formatter
+        "autopep8", -- python formatter
+        -- "pylint", -- python linter
+        "ruff",
         "eslint_d", -- js linter
       },
     })
@@ -31,19 +33,36 @@ return {
 
     -- configure null_ls
     null_ls.setup({
+      debug = true,
       -- add package.json as identifier for root (for typescript monorepos)
-      root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
+      root_dir = null_ls_utils.root_pattern(
+        ".null-ls-root",
+        "Makefile",
+        ".git",
+        "package.json"
+        -- "pyrightconfig.json",
+        -- ".pylintrc"
+      ),
       -- setup formatters & linters
       sources = {
         --  to disable file types use
         --  "formatting.prettier.with({disabled_filetypes: {}})" (see null-ls docs)
+
         formatting.prettier.with({
           extra_filetypes = { "svelte" },
         }), -- js/ts formatter
         formatting.stylua, -- lua formatter
-        formatting.isort,
-        formatting.black,
-        diagnostics.pylint,
+        -- formatting.isort,
+        -- formatting.black,
+        formatting.autopep8.with({
+          args = { "--max-line-length=79" },
+        }),
+        diagnostics.ruff.with({
+          args = { "--max-line-length=79" },
+        }),
+        -- diagnostics.pylint.with({
+        --   args = { "--max-line-length=79" },
+        -- }),
         diagnostics.eslint_d.with({ -- js/ts linter
           condition = function(utils)
             return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs

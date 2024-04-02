@@ -15,7 +15,7 @@ font:
     family: HackNerd Font
     style: Bold Italic
 
-  size: 14
+  size: 12
 
 window:
   opacity: 1

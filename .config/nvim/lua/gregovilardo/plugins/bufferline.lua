@@ -7,6 +7,7 @@ return {
       mode = "buffers",
       separator_style = "thick",
       -- separator_style = "slant" | "slope" | "thick" | "thin" | { 'any', 'any' },
+      sort_by = "directory",
     },
   },
 }

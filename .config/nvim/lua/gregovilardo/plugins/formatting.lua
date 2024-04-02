@@ -6,6 +6,11 @@ return {
     local conform = require("conform")
 
     conform.setup({
+      -- formatters = {
+      --   autopep8 = {
+      --     args = conform.range_args{}{"--max-line-length", "79", "--experimental"},
+      --   }
+      -- },
       formatters_by_ft = {
         javascript = { "prettier" },
         typescript = { "prettier" },
@@ -16,10 +21,14 @@ return {
         html = { "prettier" },
         json = { "prettier" },
         yaml = { "prettier" },
-        markdown = { "prettier" },
+        -- markdown = { "prettier" },
         graphql = { "prettier" },
         lua = { "stylua" },
-        python = { "isort", "black" },
+        -- python = { "isort", "black" },
+        python = { "autopep8" },
+        cpp = { "clang-format" },
+        c = { "clang-format" },
+        haskell = { "fourmolu" },
       },
       format_on_save = {
         lsp_fallback = true,

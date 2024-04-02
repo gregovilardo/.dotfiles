@@ -91,8 +91,21 @@ return {
 
     -- configure python server
     lspconfig["pyright"].setup({
-      capabilities = capabilities,
       on_attach = on_attach,
+      capabilities = capabilities,
+      settings = {
+        pyright = { autoImportCompletion = true },
+        python = {
+          analysis = {
+            autoSearchPaths = true,
+            -- diagnosticMode = "openFilesOnly",
+            -- useLibraryCodeForTypes = true,
+            -- typeCheckingMode = "off",
+          },
+        },
+        --   pythonPath = "/usr/bin/python3", -- Path to your Python executable
+        --   pythonSearchPaths = { "/home/gregovilardo/Documents/labs/redes_y_sd/api-kickstarter/.venv/" }, -- Path to your virtual environment's site-packages directory
+      },
     })
 
     lspconfig["rust_analyzer"].setup({
@@ -104,6 +117,18 @@ return {
         "stable",
         "rust-analyzer",
       },
+    })
+
+    lspconfig["hls"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "haskell", "lhaskell", "cabal" },
+    })
+
+    lspconfig["clangd"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "c", "cpp", "h" },
     })
 
     lspconfig["lemminx"].setup({

@@ -1,6 +1,8 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    version = "v0.9.2",
+
     event = { "BufReadPre", "BufNewFile" },
     build = ":TSUpdate",
     dependencies = {
@@ -40,8 +42,10 @@ return {
           "lua",
           "vim",
           "dockerfile",
+          "python",
           "gitignore",
           "query",
+          "haskell"
         },
         incremental_selection = {
           enable = true,
