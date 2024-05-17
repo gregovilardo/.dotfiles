@@ -70,6 +70,15 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
+    lspconfig["eslint"].setup({
+      capabilities = capabilities,
+      filetypes = { "javascript", "js", "typescriptreact", "javascriptreact" },
+      settings = {
+        packageManager = "npm",
+      },
+      on_attach = on_attach,
+    })
+
     -- configure html server
     lspconfig["html"].setup({
       capabilities = capabilities,
@@ -83,11 +92,11 @@ return {
     })
 
     -- configure emmet language server
-    lspconfig["emmet_ls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-    })
+    -- lspconfig["emmet_ls"].setup({
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    --   filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
+    -- })
 
     -- configure python server
     lspconfig["pyright"].setup({
@@ -128,7 +137,7 @@ return {
     lspconfig["clangd"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      filetypes = { "c", "cpp", "h" },
+      filetypes = { "cc", "c", "cpp", "h" },
     })
 
     lspconfig["lemminx"].setup({
@@ -143,6 +152,11 @@ return {
       filetypes = { "md", "markdown" },
     })
 
+    lspconfig["jdtls"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "java" },
+    })
     -- configure lua server (with special settings)
     lspconfig["lua_ls"].setup({
       capabilities = capabilities,

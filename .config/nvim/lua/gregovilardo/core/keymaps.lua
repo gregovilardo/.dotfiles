@@ -40,6 +40,8 @@ keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }
 keymap.set("n", "<C-b>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Go to previous buffer" }) -- open new tab
 keymap.set("n", "<C-n>", "<cmd>BufferLineCycleNext<CR>", { desc = "Go to next buffer" }) -- open new tab
 
+keymap.set("n", "<leader>e", "<CMD>Oil<CR>", { desc = "Open parent directory (oil.nvim)" })
+
 -- keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
 -- keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
 -- keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab

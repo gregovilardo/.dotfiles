@@ -16,3 +16,5 @@ alias cdf='selected_path=$(rg --files --no-ignore-vcs | fzf) && [ -n "$selected_
 #alias condazsh='eval "$(/home/gregovilardo/anaconda3/bin/conda shell.zsh hook)"'
 alias bat="batcat"
 alias wget'=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
+alias adb='HOME=/home/gregovilardo/.local/share/android adb'
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"

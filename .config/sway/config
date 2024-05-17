@@ -1,7 +1,6 @@
 # Read `man 5 sway` for a complete reference.
 ### Variables
 
-
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -10,7 +9,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term alacritty 
+set $term wezterm 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -45,9 +44,11 @@ hide_edge_borders smart
 # for_window [class=".*"] opacity $opacity
 # for_window [app_id="Alacritty"] opacity $opacity
 
-exec_always autotiling
-exec_always rusticbar
-exec wl-paste --watch cliphist store
+exec autotiling
+exec rusticbar
+
+# clipse
+exec clipse -listen
 
 
 # For wayland screen-capture on obs
@@ -57,6 +58,10 @@ exec dbus-update-activation-enviroment --systemd WAYLAND_DISPLAY XDG_CURRENT_DES
 ### Key bindings
     # Start a terminal
     bindsym $mod+Shift+Return exec $term
+    
+    # bindsym $mod+c exec $term -e sh -c "swaymsg floating enable, move position center; swaymsg resize set 80ppt 80ppt && clipse"  # Bind floating shell with TUI selection to something nice
+
+    # bindsym $mod+c exec cliphist list | $menu | cliphist decode | wl-copy
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -74,8 +79,6 @@ exec dbus-update-activation-enviroment --systemd WAYLAND_DISPLAY XDG_CURRENT_DES
     # Reload the configuration file
     bindsym $mod+Shift+c reload
 
-    bindsym $mod+c exec cliphist list | $menu | cliphist decode | wl-copy
-
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
@@ -85,7 +88,7 @@ exec dbus-update-activation-enviroment --systemd WAYLAND_DISPLAY XDG_CURRENT_DES
     bindsym $mod+u exec thunar ~/Documents/FaMAF
 
 # rusticbar
-    bindsym Mod1+b exec $HOME/.config/sway/send_hide_signal_bar.sh
+    bindsym Mod1+h exec $HOME/.config/sway/send_hide_signal_bar.sh
 
 # Audio:
     bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -0.5%
@@ -207,10 +210,10 @@ mode "resize" {
     bindsym $right resize grow width 10px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 30px
-    bindsym Down resize grow height 30px
-    bindsym Up resize shrink height 30px
-    bindsym Right resize grow width 30px
+    bindsym Left resize shrink width 60px
+    bindsym Down resize grow height 60px
+    bindsym Up resize shrink height 60px
+    bindsym Right resize grow width 60px
 
     # Return to default mode
     bindsym Return mode "default"

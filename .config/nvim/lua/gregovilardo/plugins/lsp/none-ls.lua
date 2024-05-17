@@ -63,11 +63,18 @@ return {
         -- diagnostics.pylint.with({
         --   args = { "--max-line-length=79" },
         -- }),
-        diagnostics.eslint_d.with({ -- js/ts linter
-          condition = function(utils)
-            return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
-          end,
-        }),
+        -- diagnostics.eslint_d.with({ -- js/ts linter
+        --   -- args = {
+        --   --   "--no-warn-ignored", -- <-- this is the key argument
+        --   --   "--format",
+        --   --   "json",
+        --   --   "--stdin",
+        --   --   "--stdin-filename",
+        --   -- },
+        --   condition = function(utils)
+        --     return utils.root_has_file({ "eslint.config.js", ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
+        --   end,
+        -- }),
       },
       -- configure format on save
       on_attach = function(current_client, bufnr)

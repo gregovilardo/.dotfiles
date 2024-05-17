@@ -7,31 +7,7 @@
 # PUT A .zshenv IN $HOME WITH $ZDOTDIR
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
 
-export PATH="$HOME/.config/cargo/bin:$PATH:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/go/bin:$HOME/.config/go/bin:$HOME/.local/bin"
-
-export RUSTUP_HOME=~/.config/rustup
-export CARGO_HOME=~/.config/cargo
-export XDG_DATA_HOME=~/.local/share
-export XDG_CONFIG_HOME=~/.config
-export XDG_STATE_HOME=~/.local/state
-export XDG_CACHE_HOME=~/.cache
-
-# Wayland Fix
-export XDG_CURRENT_DESKTOP=sway
-export QT_QPA_PLATFORM=wayland
-
-#export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
-
-
-#for gtk-layer-shell
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
-export LD_LIBRARY_PATH=/usr/local/lib
-
-export BAT_THEME="gruvbox-dark"
-export ZDOTDIR=$HOME/.config/zsh
 HISTSIZE=5000
-export HISTFILE=$XDG_STATE_HOME/zsh/history
 SAVEHIST=5000
 HISTDUP=erase
 setopt appendhistory
@@ -45,6 +21,8 @@ setopt hist_find_no_dups
 # Normal files to source
 plug "$ZDOTDIR/prompt.zsh"
 plug "$ZDOTDIR/aliases.zsh"
+plug "$ZDOTDIR/next_slash.zsh"
+plug "$ZDOTDIR/exports.zsh"
 
 plug "zap-zsh/exa"
 plug "zsh-users/zsh-autosuggestions"
@@ -52,11 +30,13 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "hlissner/zsh-autopair"
 plug "zsh-users/zsh-completions"
 
+
 # case sensitive settings
 autoload -U compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-
-zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'
+zstyle ':completion:*' menu select 
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 bindkey -v
 
@@ -86,18 +66,32 @@ bindkey "^[[1;5C"  forward-word
 #bindkey -s "^[d" 'change_path ^M'     
 bindkey "^[d"      backward-kill-word
 bindkey "^d"       kill-word
+bindkey "^N"       autosuggest-accept
 
 export TERMINAL="alacritty"
 export BROWSER="firefox"
 
-#PLUGINS
 
 fpath=(path/to/zsh-completions/src $fpath)
 
-export NVM_DIR="/home/gregovilardo/.nvm"
+# export NVM_DIR="/home/gregovilardo/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # eval $(ssh-agent)
-eval "$(zoxide init --cmd cd zsh)"
 
 [ -f "/home/gregovilardo/.ghcup/env" ] && . "/home/gregovilardo/.ghcup/env" # ghcup-env
+
+# PYENV
+# export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
+[[ -d $PYENV_ROOT/bin ]] && [[ ! "$PATH" == *$PYENV_ROOT/bin* ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+eval "$(zoxide init --cmd cd zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if [[ ! "$PATH" == */home/gregovilardo/.fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}/home/gregovilardo/.fzf/bin"
+fi
+
+source <(fzf --zsh)

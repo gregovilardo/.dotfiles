@@ -16,7 +16,7 @@ return {
         typescript = { "prettier" },
         javascriptreact = { "prettier" },
         typescriptreact = { "prettier" },
-        svelte = { "prettier" },
+        -- svelte = { "prettier" },
         css = { "prettier" },
         html = { "prettier" },
         json = { "prettier" },
@@ -29,6 +29,7 @@ return {
         cpp = { "clang-format" },
         c = { "clang-format" },
         haskell = { "fourmolu" },
+        java = { "clang-format" },
       },
       format_on_save = {
         lsp_fallback = true,
