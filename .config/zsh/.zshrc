@@ -67,6 +67,7 @@ bindkey "^[[1;5C"  forward-word
 bindkey "^[d"      backward-kill-word
 bindkey "^d"       kill-word
 bindkey "^N"       autosuggest-accept
+bindkey "^Y"       autosuggest-execute
 
 export TERMINAL="alacritty"
 export BROWSER="firefox"

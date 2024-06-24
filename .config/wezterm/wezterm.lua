@@ -35,7 +35,7 @@ config = {
 			action = wezterm.action.ActivateTabRelative(-1),
 		},
 		{
-			key = "q",
+			key = "k",
 			mods = "ALT",
 			-- action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 			action = wezterm.action.CloseCurrentTab({ confirm = true }),
