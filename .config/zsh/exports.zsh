@@ -33,7 +33,7 @@ export ZDOTDIR="$HOME/.config/zsh"
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
 
 export QT_QPA_PLATFORM="wayland"
-export QT_QPA_PLATFORMTHEME="qt6ct"
+export QT_QPA_PLATFORMTHEME="qt5ct"
 
 export SPARK_HOME="$XDG_DATA_HOME/spark-3.5.1-bin-hadoop3"
 
@@ -41,4 +41,8 @@ if [[ ! "$PATH" == *$CARGO_PATH:/usr/local/sbin:/usr/sbin:/sbin:$HOME/.local/bin
   export PATH="$PATH:$CARGO_PATH:/usr/local/sbin:/usr/sbin:/sbin:$HOME/.local/bin:$GOPATH/bin:/usr/local/go/bin:$OMNET_PATH"
 fi
 
+export DENO_INSTALL="/home/gregovilardo/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+export PATH="$PATH:$XDG_DATA_HOME/zen"
 

@@ -93,7 +93,7 @@ return {
 			local ensure_installed = {
 				"stylua",
 				"lua_ls",
-				"delve",
+				-- "delve",
 				-- "tailwind-language-server",
 			}
 
@@ -147,6 +147,7 @@ return {
 				formatters_by_ft = {
 					lua = { "stylua" },
 					xml = { "xmlformat" },
+					markdown = { "deno_fmt " },
 					python = function(bufnr)
 						if require("conform").get_formatter_info("ruff_format", bufnr).available then
 							return { "ruff_format" }
@@ -157,6 +158,11 @@ return {
 					-- markdown = { "mdformat" },
 				},
 				formatters = {
+					deno_fmt = {
+						command = "deno",
+						args = { "fmt", "-" },
+						stdin = true,
+					},
 					-- mdformat = {
 					-- 	-- Change where to find the command
 					-- 	env = {

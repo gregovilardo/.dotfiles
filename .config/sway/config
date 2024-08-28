@@ -1,7 +1,12 @@
 # Read `man 5 sway` for a complete reference.
-### Variables
 
-# Logo key. Use Mod1 for Alt.
+set $gnome_schema org.gnome.desktop.interface
+exec_always {
+  gsettings set $gnome_schema gtk-theme "Adwaita-dark"
+  gsettings set $gnome_schema icon-theme "Adwaita-dark"
+  gsettings set $gnome_schema cursor-theme "breeze_cursors"
+}
+
 set $mod Mod4
 # Home row direction keys, like vim
 set $left h
@@ -220,14 +225,6 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-
-# set $gnome-schema org.gnome.desktop.interface
-# exec_always {
-# gsettings set $gnome-schema gtk-theme “Adwaita-dark”
-# gsettings set $gnome-schema icon-theme “Adwaita-dark”
-# gsettings set $gnome-schema cursor-theme “Adwaita-dark”
-# # gsettings set $gnome-schema font-name “Sans 12”
-# 
 
 default_border pixel 2
 default_floating_border pixel 1
