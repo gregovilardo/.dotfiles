@@ -8,20 +8,12 @@ return {
 		end,
 		config = function()
 			local wk = require("which-key")
-			wk.register({
-				s = {
-					name = "splits and terminal",
-				},
-				f = {
-					name = "fzf",
-				},
-				g = {
-					name = "git & fzf",
-				},
-				c = {
-					name = "lsp (rename, code action)",
-				},
-			}, { prefix = "<leader>" })
+			wk.add({
+				{ "<leader>c", group = "lsp (rename, code action)" },
+				{ "<leader>f", group = "fzf" },
+				{ "<leader>g", group = "git & fzf" },
+				{ "<leader>s", group = "splits and terminal" },
+			})
 		end,
 		opts = {},
 	},

@@ -1,3 +1,5 @@
+Para agregar algo a stow simplemente `stow .`
+
 #TODO: Agregar un script para instalar todos los programas y dependencias
 
 ##### Instalar papirus icons

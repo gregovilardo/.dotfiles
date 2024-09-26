@@ -6,6 +6,7 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			"mfussenegger/nvim-lint",
 
 			{ "j-hui/fidget.nvim", opts = {} },
 
@@ -42,6 +43,17 @@ return {
 				cssls = true,
 				hls = true,
 				tsserver = true,
+				tailwindcss = true,
+
+				-- svls = {
+				-- 	root_dir = function(fname)
+				-- 		return "/home/gregovilardo/Documents/QuartusProyect/TP1"
+				-- 		-- print("HOLA")
+				-- 		-- return require("lspconfig.util").find_git_ancestor(fname)
+				-- 	end,
+				-- 	cmd = { "svls" },
+				-- 	filetypes = { "sv", "verilog", "systemverilog" },
+				-- },
 				-- lemminx = {
 				-- 	settings = {
 				-- 		xml = {
@@ -94,7 +106,7 @@ return {
 				"stylua",
 				"lua_ls",
 				-- "delve",
-				-- "tailwind-language-server",
+				"tailwindcss-language-server",
 			}
 
 			vim.list_extend(ensure_installed, servers_to_install)
@@ -145,6 +157,8 @@ return {
 			-- Autoformatting Setup
 			require("conform").setup({
 				formatters_by_ft = {
+					javascript = { "prettier" },
+					javascriptreact = { "prettier" },
 					lua = { "stylua" },
 					xml = { "xmlformat" },
 					markdown = { "deno_fmt " },
@@ -155,7 +169,6 @@ return {
 							return { "isort", "black" }
 						end
 					end,
-					-- markdown = { "mdformat" },
 				},
 				formatters = {
 					deno_fmt = {
@@ -163,14 +176,24 @@ return {
 						args = { "fmt", "-" },
 						stdin = true,
 					},
-					-- mdformat = {
-					-- 	-- Change where to find the command
-					-- 	env = {
-					-- 		wrap = 80, --TODO: Fix this
-					-- },
-					-- },
 				},
 			})
+			-- Linting configuration
+			require("lint").linters_by_ft = {
+				-- markdown = { "vale" },
+				javascript = { "eslint_d" },
+				javascriptreact = { "eslint_d" },
+			}
+			vim.api.nvim_create_user_command("LintInfo", function()
+				local filetype = vim.bo.filetype
+				local linters = require("lint").linters_by_ft[filetype]
+
+				if linters then
+					print("Linters for " .. filetype .. ": " .. table.concat(linters, ", "))
+				else
+					print("No linters configured for filetype: " .. filetype)
+				end
+			end, {})
 
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				callback = function(args)
@@ -179,6 +202,11 @@ return {
 						lsp_fallback = true,
 						quiet = true,
 					})
+				end,
+			})
+			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+				callback = function()
+					require("lint").try_lint()
 				end,
 			})
 		end,

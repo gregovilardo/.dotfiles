@@ -55,6 +55,12 @@ fi
 #for . to appear on autocompletition
 _comp_options+=(globdots)
 
+# FUNCTIONS
+run_tmux_sessionizer() {
+  tmux neww "~/.local/bin/scripts/tmux-sessionizer.bash"
+  zle redisplay;        # It makes a new line (sort of)
+}
+zle -N run_tmux_sessionizer
 # KEYMAPS
 
 bindkey  "^[[1~"   beginning-of-line
@@ -68,6 +74,7 @@ bindkey "^[d"      backward-kill-word
 bindkey "^d"       kill-word
 bindkey "^N"       autosuggest-accept
 bindkey "^Y"       autosuggest-execute
+bindkey "^f"       run_tmux_sessionizer
 
 export TERMINAL="alacritty"
 export BROWSER="firefox"

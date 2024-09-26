@@ -1,18 +1,18 @@
 font:
   normal:
-    family: HackNerd Font
+    family: BlexMonoNerdFontMono
     style: Regular
 
   bold:
-    family: HackNerd Font
+    family: BlexMonoNerdFontMono
     style: Bold
 
   italic:
-    family: HackNerd Font
+    family: BlexMonoNerdFontMono
     style: Italic
 
   bold_italic:
-    family: HackNerd Font
+    family: BlexMonoNerdFontMono 
     style: Bold Italic
 
   size: 12.5
@@ -225,4 +225,4 @@ schemes:
     - { index: 17, color: "#ff5d62" }
 
 # Apply the color scheme.
-colors: *kanagawa
+colors: *gruvbox_material_hard_dark

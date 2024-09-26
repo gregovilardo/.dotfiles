@@ -97,6 +97,7 @@ set tabstop=2
 set vb t_vb=
 set relativenumber
 
+
 " set autoindent: al habilitar esta opción, Vim automáticamente indenta las nuevas líneas en función de la indentación de la línea anterior.
 " set autoread: permite que Vim recargue automáticamente el archivo si éste cambia mientras se está editando.
 " set cin: configura la indentación automática para ciertas situaciones de código.

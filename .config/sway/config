@@ -3,7 +3,7 @@
 set $gnome_schema org.gnome.desktop.interface
 exec_always {
   gsettings set $gnome_schema gtk-theme "Adwaita-dark"
-  gsettings set $gnome_schema icon-theme "Adwaita-dark"
+  gsettings set $gnome_schema icon-theme "Papirus-Dark"
   gsettings set $gnome_schema cursor-theme "breeze_cursors"
 }
 
@@ -14,7 +14,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term wezterm 
+set $term alacritty 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -88,9 +88,6 @@ exec dbus-update-activation-enviroment --systemd WAYLAND_DISPLAY XDG_CURRENT_DES
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
     bindsym $mod+Shift+Escape exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to shut down the PC?' -B 'Yes, shut down' 'systemctl poweroff'
-
-# Open FaMAF folder
-    bindsym $mod+u exec thunar ~/Documents/FaMAF
 
 # rusticbar
     bindsym Mod1+h exec $HOME/.config/sway/send_hide_signal_bar.sh

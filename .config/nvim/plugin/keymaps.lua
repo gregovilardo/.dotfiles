@@ -44,6 +44,7 @@ set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- spli
 set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
 set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
 
+-- For window resize
 set("n", "<M-,>", "<c-w>5<")
 set("n", "<M-.>", "<c-w>5>")
 set("n", "<M-t>", "<C-W>+")
@@ -53,3 +54,8 @@ set("n", "<C-b>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Go to previous buffe
 set("n", "<C-n>", "<cmd>BufferLineCycleNext<CR>", { desc = "Go to next buffer" }) -- open new tab
 
 set("n", "<leader>e", "<CMD>Oil<CR>", { desc = "Open parent directory (oil.nvim)" })
+
+set("n", "<C-x>", ":bd<CR>", { desc = "Close current buffer" })
+
+set("n", "<M-j>", ":m+1<CR>", { desc = "Swap lines down" })
+set("n", "<M-k>", ":m-2<CR>", { desc = "Swap lines up" })
