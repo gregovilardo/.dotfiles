@@ -3,16 +3,6 @@ local set = vim.keymap.set
 vim.g.mapleader = " "
 
 set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
--- Toggle hlsearch if it's on, otherwise just do "enter"
-set("n", "<CR>", function()
-	---@diagnostic disable-next-line: undefined-field
-	if vim.opt.hlsearch:get() then
-		vim.cmd.nohl()
-		return ""
-	else
-		return "<CR>"
-	end
-end, { expr = true })
 
 -- There are builtin keymaps for this now, but I like that it shows
 -- the float when I navigate to the error - so I override them.
@@ -59,3 +49,13 @@ set("n", "<C-x>", ":bd<CR>", { desc = "Close current buffer" })
 
 set("n", "<M-j>", ":m+1<CR>", { desc = "Swap lines down" })
 set("n", "<M-k>", ":m-2<CR>", { desc = "Swap lines up" })
+
+set("n", "cd", ":Telescope git_worktree git_worktrees<CR>", { desc = "List an cd to git worktrees" })
+
+-- set("n", "<C-Tab>", "i<CR><Esc>:m-2j$a <Esc>", { desc = "Insert <CR>" })
+set("n", "<C-p>", "i<CR><Esc>k$a <Esc>", { desc = "Insert <CR>" })
+
+set("n", "<C-d>", "<C-d>zz")
+set("n", "<C-u>", "<C-u>zz")
+set("n", "n", "nzzzv")
+set("n", "N", "Nzzzv")

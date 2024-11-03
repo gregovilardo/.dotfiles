@@ -1,9 +1,9 @@
-local opt = vim.opt -- for conciseness
+local opt = vim.opt
 
 opt.inccommand = "split"
 opt.signcolumn = "yes"
 opt.shada = { "'10", "<0", "s10", "h" }
--- Don't have `o` add a comment
+-- Don't have `o` add a comment NOT WORKING ?
 opt.formatoptions:remove("o")
 opt.formatoptions:remove("O")
 
@@ -55,3 +55,12 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 vim.opt.guicursor = ""
+
+vim.opt.colorcolumn = "80"
+
+vim.cmd([[
+augroup highlight_yank
+autocmd!
+au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
+augroup END
+]])

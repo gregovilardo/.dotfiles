@@ -9,7 +9,14 @@ return {
 		-- { "nvim-telescope/telescope-file-browser.nvim" },
 	},
 	config = function()
+		local actions = require("telescope.actions")
 		require("telescope").setup({
+			mappings = {
+				i = {
+					["<C-n>"] = actions.move_selection_next,
+					["<C-b>"] = actions.move_selection_previous,
+				},
+			},
 			extensions = {
 				fzf = {
 					fuzzy = true,
@@ -26,6 +33,7 @@ return {
 		})
 
 		pcall(require("telescope").load_extension, "fzf")
+		pcall(require("telescope").load_extension("git_worktree"))
 		-- pcall(require("telescope").load_extension, "smart_history")
 
 		local builtin = require("telescope.builtin")

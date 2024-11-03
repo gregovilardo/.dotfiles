@@ -19,11 +19,13 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Normal files to source
-plug "$ZDOTDIR/prompt.zsh"
+# plug "$ZDOTDIR/prompt.zsh"
 plug "$ZDOTDIR/aliases.zsh"
 plug "$ZDOTDIR/next_slash.zsh"
 plug "$ZDOTDIR/exports.zsh"
 
+# plug "zettlrobert/simple-prompt"
+# plug "zap-zsh/vim"
 plug "zap-zsh/exa"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
@@ -74,10 +76,10 @@ bindkey "^[d"      backward-kill-word
 bindkey "^d"       kill-word
 bindkey "^N"       autosuggest-accept
 bindkey "^Y"       autosuggest-execute
-bindkey "^f"       run_tmux_sessionizer
+bindkey "^F"       run_tmux_sessionizer
 
 export TERMINAL="alacritty"
-export BROWSER="firefox"
+export BROWSER="brave-browser"
 
 
 fpath=(path/to/zsh-completions/src $fpath)
@@ -87,7 +89,6 @@ fpath=(path/to/zsh-completions/src $fpath)
 
 # eval $(ssh-agent)
 
-[ -f "/home/gregovilardo/.ghcup/env" ] && . "/home/gregovilardo/.ghcup/env" # ghcup-env
 
 # PYENV
 # export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
@@ -96,6 +97,10 @@ eval "$(pyenv init -)"
 
 eval "$(zoxide init --cmd cd zsh)"
 
+eval "$(starship init zsh)"
+
+# eval "$(ssh-agent -s)"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if [[ ! "$PATH" == */home/gregovilardo/.fzf/bin* ]]; then
@@ -103,3 +108,6 @@ if [[ ! "$PATH" == */home/gregovilardo/.fzf/bin* ]]; then
 fi
 
 source <(fzf --zsh)
+
+
+[ -f "/home/gregovilardo/.local/share/ghcup/env" ] && . "/home/gregovilardo/.local/share/ghcup/env" # ghcup-env

@@ -46,3 +46,5 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 
 export PATH="$PATH:$XDG_DATA_HOME/zen"
 
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+

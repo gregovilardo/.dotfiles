@@ -13,6 +13,8 @@ return {
 				{ "<leader>f", group = "fzf" },
 				{ "<leader>g", group = "git & fzf" },
 				{ "<leader>s", group = "splits and terminal" },
+				{ "<leader>h", group = "gitsigns hunks" },
+				{ "<leader>t", group = "toggle (gitsigns)" },
 			})
 		end,
 		opts = {},

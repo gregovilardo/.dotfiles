@@ -28,10 +28,10 @@ set $menu bemenu -b --fn $uifont -p "" --tf "$prompt" --hf "$highlight" --sf 
 # | xargs swaymsg exec
 
 ### Output configuration
-output HDMI1 pos 0 0 res 1920x1080
+output HDMI1 pos 0 0 res 1920x1080 
 
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/gregovilardo/Pictures/montain.jpg fill
+output * bg /home/gregovilardo/Pictures/clouds.jpg fill
 
 ### Input configuration
 
@@ -225,7 +225,7 @@ bindsym $mod+r mode "resize"
 
 default_border pixel 2
 default_floating_border pixel 1
-gaps inner 4
+gaps inner 0
 smart_borders on
 smart_gaps off
 
