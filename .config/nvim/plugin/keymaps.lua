@@ -59,3 +59,15 @@ set("n", "<C-d>", "<C-d>zz")
 set("n", "<C-u>", "<C-u>zz")
 set("n", "n", "nzzzv")
 set("n", "N", "Nzzzv")
+
+-- code actions on visual mode
+set({ "v", "n" }, "<M-CR>", vim.lsp.buf.code_action)
+
+-- obsidian.nvim
+set(
+	"n",
+	"<leader>on",
+	":ObsidianTemplate New-note<cr> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<cr>",
+	{ desc = "Obsidian note from template" }
+)
+set("n", "<leader>of", ":s/\\(# \\)[^_]*_/\\1/ | s/-/ /g<cr>", { desc = "remove date from obsidian template" })

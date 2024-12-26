@@ -17,12 +17,12 @@ return {
 			"b0o/SchemaStore.nvim",
 		},
 		config = function()
-			require("neodev").setup({
-				-- library = {
-				--   plugins = { "nvim-dap-ui" },
-				--   types = true,
-				-- },
-			})
+			-- require("neodev").setup({
+			-- library = {
+			--   plugins = { "nvim-dap-ui" },
+			--   types = true,
+			-- },
+			-- })
 
 			local capabilities = nil
 			if pcall(require, "cmp_nvim_lsp") then
@@ -36,7 +36,7 @@ return {
 				pyright = true,
 				html = true,
 				bashls = true,
-				gopls = true,
+				-- gopls = true,
 				lua_ls = true,
 				rust_analyzer = true,
 				templ = true,
@@ -69,6 +69,20 @@ return {
 						json = {
 							schemas = require("schemastore").json.schemas(),
 							validate = { enable = true },
+						},
+					},
+				},
+
+				gopls = {
+					settings = {
+						--TODO: This is the right way of doing it, change others if need it
+						gopls = {
+							analyses = {
+								unusedparams = true,
+								shadow = true,
+							},
+							completeUnimported = true,
+							usePlaceholders = true,
 						},
 					},
 				},
