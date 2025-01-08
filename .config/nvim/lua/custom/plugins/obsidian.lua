@@ -23,6 +23,7 @@ return {
 					local format_title = string.gsub(vim.api.nvim_buf_get_name(0), vim.loop.cwd() .. "/", "")
 					format_title = string.gsub(format_title, ".md", "")
 					format_title = format_title:match("^%d+%-%d+%-%d+_(.+)$")
+					format_title = string.gsub(format_title, "-", " ")
 					return format_title
 				end,
 			},

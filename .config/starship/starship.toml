@@ -37,7 +37,7 @@ truncate_to_repo = false
 [git_branch]
 style = 'yellow'
 symbol = ' '
-format = '[git:\(](red)[$branch]($style) '
+format = '[git:\(](red)[$branch]($style)'
 
 [git_status]
 style = 'yellow'

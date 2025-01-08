@@ -172,8 +172,11 @@ return {
 			-- Autoformatting Setup
 			require("conform").setup({
 				formatters_by_ft = {
+					go = { "goimports", "gofmt" },
 					javascript = { "prettier" },
 					javascriptreact = { "prettier" },
+					typescript = { "prettier" },
+					typescriptreact = { "prettier" },
 					lua = { "stylua" },
 					xml = { "xmlformat" },
 					markdown = { "deno_fmt " },
@@ -184,6 +187,11 @@ return {
 							return { "isort", "black" }
 						end
 					end,
+				},
+				format_after_save = {
+					timeout_ms = 2500,
+					lsp_fallback = true,
+					async = true,
 				},
 				formatters = {
 					deno_fmt = {

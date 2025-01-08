@@ -8,7 +8,7 @@ return {
 		check_ts = true,
 		enable_check_bracket_line = true,
 		fast_wrap = {
-			map = "<M-p>",
+			map = "<M-l>",
 			chars = { "{", "[", "(", '"', "'" },
 			pattern = [=[[%'%"%>%]%)%}%,]]=],
 			end_key = "$",
