@@ -1,0 +1,9 @@
+[Unit]
+Description=wl-gammarelay-rs for Wayland gamma adjustment
+
+[Service]
+ExecStart=/home/gregovilardo/.config/cargo/bin/wl-gammarelay-rs
+Restart=always
+
+[Install]
+WantedBy=default.target

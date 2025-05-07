@@ -87,8 +87,8 @@ fpath=(path/to/zsh-completions/src $fpath)
 # export NVM_DIR="/home/gregovilardo/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# eval $(ssh-agent)
-
+# eval "$(ssh-agent -s)"
+# ssh-add ~/.ssh/id_rsa
 
 # PYENV
 # export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
@@ -108,6 +108,7 @@ if [[ ! "$PATH" == */home/gregovilardo/.fzf/bin* ]]; then
 fi
 
 source <(fzf --zsh)
+
 
 
 [ -f "/home/gregovilardo/.local/share/ghcup/env" ] && . "/home/gregovilardo/.local/share/ghcup/env" # ghcup-env

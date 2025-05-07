@@ -38,32 +38,19 @@ return {
 				bashls = true,
 				-- gopls = true,
 				lua_ls = true,
-				rust_analyzer = true,
+				rust_analyzer = {
+					filetypes = { "rs", "rust" },
+				},
 				templ = true,
 				cssls = true,
-				hls = true,
 				ts_ls = true,
 				tailwindcss = true,
 				zls = true,
+				hls = {
+					filetypes = { "haskell", "lhaskell", "cabal" },
+					manual_install = true,
+				},
 
-				-- svls = {
-				-- 	root_dir = function(fname)
-				-- 		return "/home/gregovilardo/Documents/QuartusProyect/TP1"
-				-- 		-- print("HOLA")
-				-- 		-- return require("lspconfig.util").find_git_ancestor(fname)
-				-- 	end,
-				-- 	cmd = { "svls" },
-				-- 	filetypes = { "sv", "verilog", "systemverilog" },
-				-- },
-				-- lemminx = {
-				-- 	settings = {
-				-- 		xml = {
-				-- 			server = {
-				-- 				workDir = "~/.cache/lemminx",
-				-- 			},
-				-- 		},
-				-- 	},
-				-- },
 				jsonls = {
 					settings = {
 						json = {
@@ -177,6 +164,7 @@ return {
 					javascriptreact = { "prettier" },
 					typescript = { "prettier" },
 					typescriptreact = { "prettier" },
+					sh = { "shfmt " },
 					lua = { "stylua" },
 					xml = { "xmlformat" },
 					markdown = { "deno_fmt " },

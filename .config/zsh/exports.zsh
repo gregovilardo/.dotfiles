@@ -49,3 +49,5 @@ export PATH="$PATH:$XDG_DATA_HOME/zen"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 export SOPS_PGP_FP="764AABDE4F76CE5B7E08969C24F5510A5E6CF019"
+
+export PATH="$PATH:$XDG_DATA"

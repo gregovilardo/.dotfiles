@@ -1,18 +1,18 @@
 # Nerd Fonts
 
-This is an archived font from the Nerd Fonts release v3.1.1.
+This is an archived font from the Nerd Fonts release v3.4.0.
 
 For more information see:
 * https://github.com/ryanoasis/nerd-fonts/
 * https://github.com/ryanoasis/nerd-fonts/releases/latest/
 
-# Hack
+# Iosevka
 
-A typeface designed for source code.
+**Iosevka** is an *open-source*, *sans-serif* + *slab-serif*, *monospace* + *quasi‑proportional* typeface family, designed for *writing code*, using in *terminals*, and preparing *technical documents*.
 
-For more information have a look at the upstream website: https://github.com/source-foundry/Hack
+For more information have a look at the upstream website: https://github.com/be5invis/Iosevka
 
-Version: 3.003
+Version: 33.2.1
 
 ## Which font?
 

@@ -64,10 +64,5 @@ set("n", "N", "Nzzzv")
 set({ "v", "n" }, "<M-CR>", vim.lsp.buf.code_action)
 
 -- obsidian.nvim
-set(
-	"n",
-	"<leader>on",
-	":ObsidianTemplate New-note<cr> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<cr>",
-	{ desc = "Obsidian note from template" }
-)
+set("n", "<leader>on", ":ObsidianTemplate limbo-note<cr>", { desc = "Obsidian limbo note from template" })
 set("n", "<leader>of", ":s/\\(# \\)[^_]*_/\\1/ | s/-/ /g<cr>", { desc = "remove date from obsidian template" })

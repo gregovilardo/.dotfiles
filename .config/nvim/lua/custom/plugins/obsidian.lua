@@ -14,17 +14,30 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
+
 	opts = {
+
 		disable_frontmatter = true,
 		templates = {
-			folder = "Templates",
+			subdir = "Templates",
+			default = "limbo-note.md",
 			substitutions = {
 				title = function()
-					local format_title = string.gsub(vim.api.nvim_buf_get_name(0), vim.loop.cwd() .. "/", "")
-					format_title = string.gsub(format_title, ".md", "")
-					format_title = format_title:match("^%d+%-%d+%-%d+_(.+)$")
-					format_title = string.gsub(format_title, "-", " ")
-					return format_title
+					local path = string.gsub(vim.api.nvim_buf_get_name(0), vim.loop.cwd() .. "/", "")
+					local filename = path:match("([^/]+)%.md$") or path:match("([^/]+)$")
+					local title_with_hyphens = filename:match("^%d%d%d%d%-%d%d%-%d%d%_(.+)$") or filename
+					local final_title = title_with_hyphens:gsub("-", " ")
+					return final_title
+				end,
+				id = function()
+					Length = 10
+					local chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+					local id = ""
+					for i = 1, Length do
+						local rand = math.random(1, #chars)
+						id = id .. string.sub(chars, rand, rand)
+					end
+					return id .. "L"
 				end,
 			},
 		},
@@ -41,13 +54,34 @@ return {
 		workspaces = {
 			{
 				name = "personal",
-				path = "~/Notas",
+				path = "~/Documents/Notes",
+			},
+		},
+		notes_subdir = "Limbo",
+		new_notes_location = "notes_subdir",
+		mappings = {
+			-- Overrides the 'gf' mapping to work on markdown/wiki links within your vaul
+			["gf"] = {
+				action = function()
+					return require("obsidian").util.gf_passthrough()
+				end,
+				opts = { noremap = false, expr = true, buffer = true },
+				desc = { "Go to file (obsidian.nvim)" },
+			},
+			-- Toggle check-boxes.
+			["<leader>ch"] = {
+				action = function()
+					return require("obsidian").util.toggle_checkbox()
+				end,
+				opts = { buffer = true },
+			},
+			-- Smart action depending on context, either follow link or toggle checkbox.
+			["<cr>"] = {
+				action = function()
+					return require("obsidian").util.smart_action()
+				end,
+				opts = { buffer = true, expr = true },
 			},
 		},
 	},
-	-- setup = function()
-	-- 	require("obsidian").setup({
-	-- 		ui = { enable = false },
-	-- 	})
-	-- end,
 }

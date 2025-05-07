@@ -1,10 +1,14 @@
 # Read `man 5 sway` for a complete reference.
 
+# set $menu dmenu_path | dmenu | xargs swaymsg exec --
+# set $menu_run bemenu-run -b --fn $uifont -p "" --tf "$prompt" --hf "$highlight" --sf "$highlight" --scf "$highlight" 
+# set $menu bemenu -b --fn $uifont -p "" --tf "$prompt" --hf "$highlight" --sf "$highlight" --scf "$highlight" 
+
 set $gnome_schema org.gnome.desktop.interface
 exec_always {
-  gsettings set $gnome_schema gtk-theme "Adwaita-dark"
+  gsettings set $gnome_schema gtk-theme "materia-gtk-theme"
   gsettings set $gnome_schema icon-theme "Papirus-Dark"
-  gsettings set $gnome_schema cursor-theme "breeze_cursors"
+  gsettings set $gnome_schema cursor-theme "Adwaita"
 }
 
 set $mod Mod4
@@ -13,31 +17,37 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
-set $term alacritty 
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-# set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $term ghostty 
 set $uifont "JetBrains Mono Nerd Font 16"
 set $highlight #458588
 set $prompt #458588 
-set $menu_run bemenu-run -b --fn $uifont -p "" --tf "$prompt" --hf "$highlight" --sf "$highlight" --scf "$highlight" 
+set $menu walker
 
-set $menu bemenu -b --fn $uifont -p "" --tf "$prompt" --hf "$highlight" --sf "$highlight" --scf "$highlight" 
 # | xargs swaymsg exec
 
 ### Output configuration
-output HDMI1 pos 0 0 res 1920x1080 
+output HDMI-A-1 pos 1551 0 res 1920x1080 scale 1.0
+output "eDP-1" pos 0 0 res 1920 1200 scale 1.24
 
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/gregovilardo/Pictures/clouds.jpg fill
+output * bg /home/gregovilardo/Pictures/leave_on_water.jpg fill
+
+workspace 1 output eDP-1
+workspace 2 output eDP-1
+workspace 3 output eDP-1
+workspace 4 output eDP-1
+workspace 5 output eDP-1
+workspace 6 output eDP-1
+workspace 7 output HDMI-A-1
+workspace 8 output HDMI-A-1
+workspace 9 output HDMI-A-1
+workspace 10 output HDMI-A-1
 
 ### Input configuration
 
 #keyboard layout
 input type:keyboard {
-    xkb_layout us,es
+    xkb_layout us,latam
     xkb_options grp:rctrl_toggle
 }
 
@@ -50,11 +60,11 @@ hide_edge_borders smart
 # for_window [app_id="Alacritty"] opacity $opacity
 
 exec autotiling
-exec rusticbar
+exec_always rusticbar
+exec_always "walker --gapplication-service"
 
-# clipse
-exec clipse -listen
-
+# Notification Daemon
+exec swaync-black
 
 # For wayland screen-capture on obs
 exec systemctl --user import-enviroment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
@@ -63,16 +73,20 @@ exec dbus-update-activation-enviroment --systemd WAYLAND_DISPLAY XDG_CURRENT_DES
 ### Key bindings
     # Start a terminal
     bindsym $mod+Shift+Return exec $term
-    
-    # bindsym $mod+c exec $term -e sh -c "swaymsg floating enable, move position center; swaymsg resize set 80ppt 80ppt && clipse"  # Bind floating shell with TUI selection to something nice
 
-    # bindsym $mod+c exec cliphist list | $menu | cliphist decode | wl-copy
+    # Toggle control center
+    bindsym $mod+n exec swaync-client -t -sw
 
     # Kill focused window
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+m exec $menu_run
+    bindsym $mod+m exec $menu
+
+    # Walker
+    bindsym $mod+bracketleft exec walker -m clipboard
+    bindsym $mod+bracketright exec walker -m websearch 
+    bindsym $mod+Shift+w exec walker -m windows 
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -241,6 +255,6 @@ client.urgent           #2f343a #900000   #ffffff #90000000
 # finds out, if available)
 # bar {
 #   position top
-#   status_command i3blocks
+#   status_command i3status
 # }
 include /etc/sway/config.d/*
