@@ -112,3 +112,8 @@ source <(fzf --zsh)
 
 
 [ -f "/home/gregovilardo/.local/share/ghcup/env" ] && . "/home/gregovilardo/.local/share/ghcup/env" # ghcup-env
+
+# if [ -z "$SSH_AUTH_SOCK" ]; then
+#    eval "$(ssh-agent -s)"
+#    ssh-add ~/.ssh/liricus 2>/dev/null
+# fi

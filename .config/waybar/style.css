@@ -1,0 +1,55 @@
+* {
+    font-family: "SF Pro Display", sans-serif;
+    font-size: 14px;
+    color: white;
+    background: black;
+}
+
+#waybar {
+    background-color: rgba(28, 28, 30, 0.50);
+    border-bottom: 1px solid #000000;
+    /* padding: 4px 6px; */
+    margin: 4px;
+}
+
+#custom-wl-gammarelay-brightness,
+#custom-wl-gammarelay-temperature,
+#custom-wl-gammarelay-gamma,
+#clock,
+#network,
+#pulseaudio,
+#cpu,
+#memory,
+#network,
+#language,
+#battery,
+#bluetooth,
+#temperature {
+    padding: 4px 14px;
+    color: white;
+}
+
+
+#clock {
+    /* padding-right: 10px; */
+    font-weight: 700;
+}
+
+#window {
+    font-weight: 600;
+}
+
+button {
+    border: none;
+    border-radius: 0;
+}
+
+#workspaces button.focused {
+    background-color: rgba(60, 60, 60, 0.50);
+}
+
+#workspaces button.focused label {
+    background-color: transparent;
+}
+
+/* #workspace */

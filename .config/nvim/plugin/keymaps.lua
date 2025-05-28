@@ -66,3 +66,18 @@ set({ "v", "n" }, "<M-CR>", vim.lsp.buf.code_action)
 -- obsidian.nvim
 set("n", "<leader>on", ":ObsidianTemplate limbo-note<cr>", { desc = "Obsidian limbo note from template" })
 set("n", "<leader>of", ":s/\\(# \\)[^_]*_/\\1/ | s/-/ /g<cr>", { desc = "remove date from obsidian template" })
+
+-- code actions
+set("v", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", { desc = "Visual code action" })
+
+-- refactor
+set("x", "<leader>re", ":Refactor extract ")
+
+-- formatting
+set("v", "<leader>f", function()
+	require("conform").format({ range = true })
+end, { desc = "Format selected text with Conform" })
+
+set("n", "<leader>cf", function()
+	require("conform").format()
+end, { desc = "Format current file" })

@@ -30,7 +30,7 @@ output HDMI-A-1 pos 1551 0 res 1920x1080 scale 1.0
 output "eDP-1" pos 0 0 res 1920 1200 scale 1.24
 
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/gregovilardo/Pictures/leave_on_water.jpg fill
+output * bg /home/gregovilardo/Pictures/galaxy.jpg fill
 
 workspace 1 output eDP-1
 workspace 2 output eDP-1
@@ -48,7 +48,7 @@ workspace 10 output HDMI-A-1
 #keyboard layout
 input type:keyboard {
     xkb_layout us,latam
-    xkb_options grp:rctrl_toggle
+    xkb_options grp:win_space_toggle
 }
 
 ### Window borders 
@@ -60,11 +60,9 @@ hide_edge_borders smart
 # for_window [app_id="Alacritty"] opacity $opacity
 
 exec autotiling
-exec_always rusticbar
+# exec_always rusticbar
+exec waybar
 exec_always "walker --gapplication-service"
-
-# Notification Daemon
-exec swaync-black
 
 # For wayland screen-capture on obs
 exec systemctl --user import-enviroment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
@@ -72,13 +70,13 @@ exec dbus-update-activation-enviroment --systemd WAYLAND_DISPLAY XDG_CURRENT_DES
 
 ### Key bindings
     # Start a terminal
-    bindsym $mod+Shift+Return exec $term
+    bindsym $mod+Return exec $term
 
-    # Toggle control center
+    # TODO Toggle control center
     bindsym $mod+n exec swaync-client -t -sw
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+q kill
 
     # Start your launcher
     bindsym $mod+m exec $menu
@@ -105,6 +103,11 @@ exec dbus-update-activation-enviroment --systemd WAYLAND_DISPLAY XDG_CURRENT_DES
 
 # rusticbar
     bindsym Mod1+h exec $HOME/.config/sway/send_hide_signal_bar.sh
+
+#Brightness
+    bindsym XF86MonBrightnessUp exec busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d +0.02
+    bindsym XF86MonBrightnessDown exec busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d -0.02
+
 
 # Audio:
     bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -0.5%
@@ -235,7 +238,12 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 bindsym $mod+r mode "resize"
+
+input type:touchpad {
+    tap enabled
+}
 
 default_border pixel 2
 default_floating_border pixel 1

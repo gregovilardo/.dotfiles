@@ -33,7 +33,21 @@ return {
 
 			local servers = {
 				marksman = true,
-				pyright = true,
+				pyright = {
+					root_dir = function(fname)
+						return require("lspconfig.util").find_git_ancestor(fname) or vim.fn.getcwd()
+					end,
+					settings = {
+
+						python = {
+							analysis = {
+								configFilePath = "/home/gregovilardo/Work/mas10_api/pyrightconfig.json",
+								autoSearchPaths = false,
+								diagnosticMode = "workspace", -- optional, but recommended
+							},
+						},
+					},
+				},
 				html = true,
 				bashls = true,
 				-- gopls = true,
@@ -176,11 +190,11 @@ return {
 						end
 					end,
 				},
-				format_after_save = {
-					timeout_ms = 2500,
-					lsp_fallback = true,
-					async = true,
-				},
+				-- format_after_save = {
+				-- 	timeout_ms = 2500,
+				-- 	lsp_fallback = true,
+				-- 	async = true,
+				-- },
 				formatters = {
 					deno_fmt = {
 						command = "deno",
@@ -228,6 +242,10 @@ return {
 
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				callback = function(args)
+					if vim.bo[args.buf].filetype == "python" then
+						print("format_after_save dissable on python")
+						return nil
+					end
 					require("conform").format({
 						bufnr = args.buf,
 						lsp_fallback = true,

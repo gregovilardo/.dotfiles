@@ -1,0 +1,49 @@
+{
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "f",
+    ): Maximize,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "z",
+    ): System(HomeFolder),
+    (
+        modifiers: [
+            Super,
+        ],
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "d",
+    ): Minimize,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Return",
+    ): System(Terminal),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "t",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "slash",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "m",
+    ): System(Launcher),
+}
